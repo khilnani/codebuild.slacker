@@ -1,0 +1,37 @@
+{
+  "name": "codebuild.slacker",
+  "version": "0.0.1",
+  "description": "Serverless app to send AWS CodeBuild notifications to Slack.",
+  "license": "Apache-2.0",
+  "private": true,
+  "main": "handler.js",
+  "scripts": {
+    "deploy": "npx serverless deploy",
+    "info": "npx serverless info",
+    "logs": "npx serverless logs -f event -t --startTime 1m",
+    "test-build": "npx serverless invoke local -f event -l --path fixtures/build.json",
+    "test-phase": "npx serverless invoke local -f event -l --path fixtures/phase.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khilnani/codebuild.slacker.git"
+  },
+  "keywords": [
+    "slack",
+    "send",
+    "notifications",
+    "serverless",
+    "aws codebuild",
+    "automation"
+  ],
+  "author": "Nik Khilnani",
+  "bugs": {
+    "url": "https://github.com/khilnani/codebuild.slacker/issues"
+  },
+  "homepage": "https://github.com/khilnani/codebuild.slacker/#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "serverless": "^1.32.0"
+  }
+}

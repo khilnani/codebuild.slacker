@@ -1,0 +1,32 @@
+service: codebuild-slacker
+
+provider:
+    name: aws
+    runtime: nodejs8.10
+    stage: dev
+    region: us-east-1
+    memorySize: 128
+    versionFunctions: false
+    cfLogs: true
+package:
+    exclude:
+        - .npmignore
+        - fixtures/**
+        - .git/**
+functions:
+    event:
+        handler: handler.handle_event
+        description: Handle events from CodeBuild and send message to Slack
+        timeout: 30
+        events:
+            - cloudwatchEvent:
+                description: 'Cloudwatch Event triggered on codebuild build state change'
+                event:
+                    source:
+                        - "aws.codebuild"
+                enabled: true
+resources:
+    Resources:
+        EventLogGroup:
+            Properties:
+                RetentionInDays: "7"
